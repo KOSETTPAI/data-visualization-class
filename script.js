@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
        // Adjust height or make it dynamic based on container aspect ratio
       const containerHeight = container.node().getBoundingClientRect().height || 500;
 
-      const apiKey = 'b102bd05d9ef4b98bbd931abdc860adc'; // Keep API key for now, but advise user
+      const apiKey = '0e2754ac33a648daadb5b28b1bc8022f'; // Keep API key for now, but advise user
       // Consider using a proxy or server-side fetch in production
       const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
 
