@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Charts Poster</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.5/build/d3.layout.cloud.js"></script>
+</head>
+<body>
+    <h1>Global and Thai Economic Insights: Inflation, Unemployment, and News Trends</h1>
+    <p class="source-note">Data sources are from World Bank and NewsAPI. Visualizations created using D3.js.</p>
+
+    <div class="poster-container">
+
+        <div id="combo-chart-container" class="chart-box">
+            <h2>Inflation & Unemployment Rate (Thailand)</h2>
+            <p class="chart-explanation">
+                This combo chart displays the annual inflation rate (blue bars) and
+                the total unemployment rate (red line) for Thailand from 2000 to 2023.
+                Data is sourced from the World Bank API.
+            </p>
+             <svg id="combo-chart-svg"></svg>
+        </div>
+
+         <div id="map-container" class="chart-box">
+            <h2>World GDP Per Capita (2022)</h2>
+             <p class="world-map-chart-explanation">
+                This World map visualizes Gross Domestic Product (GDP) per capita (current US$) for countries worldwide
+                using data from the World Bank for the year 2022. Darker shades indicate lower GDP per capita,
+                while brighter shades indicate higher GDP per capita. Grey areas indicate missing data.
+            </p>
+             <svg id="map-svg"></svg>
+         </div>
+
+        <div id="word-cloud-container" class="chart-box">
+            <h2>Top Headlines Word Cloud (US)</h2>
+            <p class="chart-explanation">
+                This word cloud shows the most frequent words found in the titles of recent top news headlines
+                from the United States, sourced via NewsAPI. Common English words (stop words) are excluded.
+                The size of each word is proportional to its frequency in the headlines.
+            </p>
+            </div>
+
+    </div> <div id="tooltip" class="tooltip"></div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

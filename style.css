@@ -1,0 +1,183 @@
+/* General body styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0; /* Light background for the page */
+    color: #333;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #1d3557; /* Dark blue for headings */
+}
+
+/* Poster layout using Flexbox */
+.poster-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow charts to wrap on smaller screens */
+    gap: 20px; /* Spacing between chart boxes */
+    justify-content: center; /* Center charts horizontally */
+    padding: 10px;
+}
+
+/* Styling for individual chart containers */
+.chart-box {
+    background-color: #ffffff; /* White background for chart areas */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    /* Adjust width calculation to account for gap */
+    width: calc(50% - 30px); /* Approx 2 charts per row, adjust as needed */
+    min-width: 400px; /* Minimum width for readability */
+    box-sizing: border-box; /* Include padding and border in width */
+    overflow: hidden; /* Hide overflow */
+    display: flex; /* Use flexbox for internal alignment */
+    flex-direction: column; /* Stack title and SVG vertically */
+    align-items: center; /* Center SVG horizontally */
+}
+
+/* Make SVGs responsive within their containers */
+.chart-box svg {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below SVG */
+    margin: 0 auto; /* Center SVG if it's smaller than container */
+}
+
+/* Specific container adjustments if needed */
+#map-container {
+    background-color: #1d3557; /* Keep original map background */
+    color: #f1faee; /* Light text for map title */
+}
+#map-container h2 {
+    color: #f1faee;
+}
+
+#word-cloud-container {
+    /* Specific styles for word cloud container if necessary */
+    height: 550px; /* Set fixed height or manage aspect ratio */
+}
+#word-cloud-container svg {
+     width: 100%;
+     height: 100%;
+}
+
+
+/* Shared Tooltip Styling */
+.tooltip {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #333;
+    pointer-events: none; /* Tooltip should not capture mouse events */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.2s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 10; /* Ensure tooltip is above other elements */
+}
+
+/* Combo Chart Specific Styles */
+#combo-chart-svg .bar {
+    fill: steelblue;
+}
+#combo-chart-svg .line {
+    fill: none;
+    stroke: red;
+    stroke-width: 2px;
+}
+#combo-chart-svg .dot {
+    fill: red;
+    stroke: darkred; /* Add stroke for better visibility */
+    stroke-width: 1px;
+}
+#combo-chart-svg .axis path,
+#combo-chart-svg .axis line {
+    fill: none;
+    stroke: #555; /* Darker axis lines */
+    shape-rendering: crispEdges;
+}
+#combo-chart-svg .axis text {
+    font-size: 10px;
+    fill: #333; /* Darker axis labels */
+}
+#combo-chart-svg .legend {
+    font-size: 11px;
+}
+#combo-chart-svg .legend rect {
+    stroke-width: 1;
+    stroke: #000;
+}
+#combo-chart-svg .y-axis-right text {
+    fill: red; /* Match right axis label color to line */
+}
+#combo-chart-svg .y-axis-left text {
+    fill: steelblue; /* Match left axis label color to bars */
+}
+
+
+/* World Map Specific Styles */
+#map-svg path {
+    /* Default fill is set by color scale in JS */
+    stroke: #f1faee; /* Light stroke for country borders */
+    stroke-width: 0.3px; /* Thinner stroke */
+    transition: opacity 0.2s ease-in-out; /* Smooth hover effect */
+}
+#map-svg path:hover {
+     opacity: 0.7; /* Highlight on hover */
+}
+
+/* Word Cloud Specific Styles */
+/* Styles are applied inline via JS (fill, font-size, transform) */
+#word-cloud-container text {
+     cursor: default; /* Standard cursor over words */
+     font-family: Arial, sans-serif; /* Ensure font consistency */
+}
+
+/* Styling for chart explanations */
+.chart-explanation {
+    font-size: 0.85em; /* Slightly smaller text */
+    color: #555;      /* Grey text color */
+    margin: 10px 5px 15px 5px; /* Add some space around the text */
+    line-height: 1.4;  /* Improve readability */
+    text-align: left; /* Align text to the left within the box */
+    max-width: 95%;   /* Prevent text from touching edges */
+}
+
+.world-map-chart-explanation {
+    font-size: 0.85em; /* Slightly smaller text */
+    color: #ffffff;      /* Grey text color */
+    margin: 10px 5px 15px 5px; /* Add some space around the text */
+    line-height: 1.4;  /* Improve readability */
+    text-align: left; /* Align text to the left within the box */
+    max-width: 95%;   /* Prevent text from touching edges */
+}
+
+/* Optional: General source note styling */
+.source-note {
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+
+svg.legend {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.legend-axis path,
+.legend-axis line {
+    stroke: #444;
+    shape-rendering: crispEdges;
+}
+
+.legend-axis text {
+    fill: #ffffff;
+}
