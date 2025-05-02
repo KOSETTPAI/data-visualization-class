@@ -195,6 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
        // Adjust height or make it dynamic based on container aspect ratio
       const containerHeight = container.node().getBoundingClientRect().height || 500;
 
+      
       const url = 'text_data.json';
 
       // Basic stop words list (expand as needed)
@@ -396,6 +397,68 @@ document.addEventListener('DOMContentLoaded', () => {
                    g.attr("transform", event.transform);
                });
            svgElement.call(zoom);
+
+
+           // === Add Legend ===
+            const legendWidth = 300;
+            const legendHeight = 10;
+
+            const legendSvg = container.append("svg")
+                .attr("class", "legend")
+                .attr("width", legendWidth)
+                .attr("height", 50); // Height includes space for labels
+
+            const legendScale = d3.scaleLog()
+                .domain(colorScale.domain())
+                .range([0, legendWidth]);
+            
+            const [minGDP, maxGDP] = colorScale.domain();
+
+
+            const logMin = Math.floor(Math.log10(minGDP));
+            const logMax = Math.ceil(Math.log10(maxGDP));
+                
+            const legendTickValues = d3.range(logMin, logMax + 1).map(exp => Math.pow(10, exp))
+
+            const legendAxis = d3.axisBottom(legendScale)
+                            .tickValues(legendTickValues)
+                            .tickFormat(d3.format("$.2s"));
+
+            const gradientId = "gdp-gradient";
+            const defs = legendSvg.append("defs");
+            const gradient = defs.append("linearGradient")
+                .attr("id", gradientId)
+                .attr("x1", "0%")
+                .attr("x2", "100%");
+
+            const numStops = 10;
+            const legendDomain = d3.range(0, numStops).map(d => {
+                return colorScale.domain()[0] * Math.pow(
+                    colorScale.domain()[1] / colorScale.domain()[0],
+                    d / (numStops - 1)
+                );
+            });
+
+            gradient.selectAll("stop")
+                .data(legendDomain)
+                .enter()
+                .append("stop")
+                .attr("offset", (d, i) => `${(i / (numStops - 1)) * 100}%`)
+                .attr("stop-color", d => colorScale(d));
+
+            legendSvg.append("rect")
+                .attr("x", 0)
+                .attr("y", 10)
+                .attr("width", legendWidth)
+                .attr("height", legendHeight)
+                .style("fill", `url(#${gradientId})`);
+
+            legendSvg.append("g")
+                .attr("class", "legend-axis")
+                .attr("transform", `translate(0, ${10 + legendHeight})`)
+                .call(legendAxis);
+
+
 
 
       }).catch(error => {
