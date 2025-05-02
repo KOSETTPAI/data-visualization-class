@@ -164,3 +164,19 @@ h1, h2 {
     color: #666;
     margin-bottom: 20px;
 }
+
+svg.legend {
+    display: block;
+    margin-top: 10px;
+    font-size: 12px;
+}
+
+.legend-axis path,
+.legend-axis line {
+    stroke: #444;
+    shape-rendering: crispEdges;
+}
+
+.legend-axis text {
+    fill: #ffffff;
+}
